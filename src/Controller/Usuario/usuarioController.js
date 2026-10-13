@@ -19,11 +19,19 @@ endpoints.post('/usuario', async (req, resp) => {
 })
 
 endpoints.post('/usuario/logar', async (req, resp) => {
-    try{
+    try {
         const usuario = req.body;
-        
+        const resposta = await Service.usuarioLogarService(usuario);
+
+        resp.send({
+            resultado: "Logou com sucesso",
+            usuario: [
+                usuario.nome,
+                usuario.email
+            ]
+        })
     }
-    catch(err){
+    catch (err) {
 
     }
 })
